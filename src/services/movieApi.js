@@ -14,3 +14,23 @@ export const getMovieById = async id => {
   const res = await axios.get(`${BASE_URL}movie/${id}?api_key=${API_KEY}`);
   return res.data;
 };
+
+export const getCredits = async id => {
+  const res = await axios.get(
+    `${BASE_URL}movie/${id}/credits?api_key=${API_KEY}`
+  );
+  return res.data.cast;
+};
+
+export const getReviews = async id => {
+  const res = await axios.get(
+    `${BASE_URL}movie/${id}/reviews?api_key=${API_KEY}`
+  );
+  return res.data.results;
+};
+
+export const getMovieByQuery = async (query) =>{
+  const res = await axios.get(`${BASE_URL}search/movie?api_key=${API_KEY}&query=${query}`);
+  // console.log(res);
+  return res.data.results;
+}
