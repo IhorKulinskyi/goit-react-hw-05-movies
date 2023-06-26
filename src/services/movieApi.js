@@ -23,12 +23,20 @@ export const getMovieById = async id => {
   }
 };
 
-export const getCredits = async id => {
+export const getDetails = async (id, param) => {
   try {
     const res = await axios.get(
-      `${BASE_URL}movie/${id}/credits?api_key=${API_KEY}`
+      `${BASE_URL}movie/${id}/${param}?api_key=${API_KEY}`
     );
-    return res.data.cast;
+    switch (param) {
+      case 'credits':
+        return res.data.cast;
+      case 'reviews':
+        return res.data.results;
+
+      default:
+        return;
+    }
   } catch (error) {
     console.log(error);
   }
