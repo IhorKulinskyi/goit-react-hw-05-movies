@@ -18,21 +18,30 @@ const MovieInfo = () => {
 
   return (
     <div>
-      <Link to={backLinkLocationRef.current} className='goBack__btn'>Back to</Link>
+      <Link to={backLinkLocationRef.current} className="goBack__btn">
+        Back to
+      </Link>
       <div className="container">
         <img
-          src={`https://image.tmdb.org/t/p/w300${poster_path}`}
+          src={
+            poster_path
+              ? `https://image.tmdb.org/t/p/w300${poster_path}`
+              : 'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700'
+          }
           alt={title}
+          width={250}
         />
         <div>
-          <h2 className='movie__title'>
+          <h2 className="movie__title">
             {title}
             {`(${release_date && release_date.slice(0, 4)})`}
           </h2>
-          <p className='userscore'>User score: {`${Math.round(vote_average * 10)}%`}</p>
-          <p className='overview__title'>Overview</p>
+          <p className="userscore">
+            User score: {`${Math.round(vote_average * 10)}%`}
+          </p>
+          <p className="overview__title">Overview</p>
           <p>{overview}</p>
-          <p className='genres__title'>Genres</p>
+          <p className="genres__title">Genres</p>
           <p>{genres && genres.map(genre => genre.name).join(', ')}</p>
         </div>
       </div>
