@@ -14,10 +14,10 @@ const ReviewsList = () => {
         {!reviews.length ? (
           <p>No reviews</p>
         ) : (
-          reviews.map(review => (
-            <li key={review.id}>
-              <h2>{review.author}</h2>
-              <p>{review.content}</p>
+          reviews.map(({id,author,content}) => (
+            <li key={id}>
+              <h2>{author}</h2>
+              <p>{content}</p>
             </li>
           ))
         )}

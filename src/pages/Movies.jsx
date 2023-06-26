@@ -1,4 +1,4 @@
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams, Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getMovieByQuery } from 'services/movieApi';
 
@@ -6,6 +6,7 @@ const MovieSearch = () => {
   const [movieList, setMovieList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('query') ?? '';
+  const location = useLocation();
 
   // const updateQueryString = e => {
   //   const param = e.target.value === '' ? {} : { query: e.target.value };
@@ -38,9 +39,11 @@ const MovieSearch = () => {
         <button type="submit">Search</button>
       </form>
       <ul>
-        {movieList.map(movie => (
-          <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+        {movieList.map(({ id, title }) => (
+          <li key={id}>
+            <Link to={`/movies/${id}`} state={{ from: location }}>
+              {title}
+            </Link>
           </li>
         ))}
       </ul>
